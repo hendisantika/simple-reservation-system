@@ -39,4 +39,20 @@ public class ReservationService {
         return reservationRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
+
+    public Long create(final Reservation reservation) {
+        int capacity = capacityRepository.findByAmenityType(reservation.getAmenityType()).getCapacity();
+        int overlappingReservations = reservationRepository
+                .findReservationsByReservationDateAndStartTimeBeforeAndEndTimeAfterOrStartTimeBetween(
+                        reservation.getReservationDate(),
+                        reservation.getStartTime(), reservation.getEndTime(),
+                        reservation.getStartTime(), reservation.getEndTime()).size();
+
+        if (overlappingReservations >= capacity) {
+            throw new CapacityFullException("This amenity's capacity is full at desired time");
+        }
+
+        return reservationRepository.save(reservation).getId();
+    }
+
 }
