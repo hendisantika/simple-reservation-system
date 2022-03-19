@@ -3,7 +3,9 @@ package com.hendisantika.service;
 import com.hendisantika.model.Reservation;
 import com.hendisantika.repository.CapacityRepository;
 import com.hendisantika.repository.ReservationRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -31,5 +33,10 @@ public class ReservationService {
 
     public List<Reservation> findAll() {
         return reservationRepository.findAll();
+    }
+
+    public Reservation get(final Long id) {
+        return reservationRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 }
