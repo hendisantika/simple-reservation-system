@@ -52,4 +52,8 @@ public class UserService {
         existingUser.setFullName(user.getFullName());
         userRepository.save(existingUser);
     }
+
+    public void delete(final Long id) {
+        userRepository.deleteById(id);
+    }
 }
