@@ -55,4 +55,9 @@ public class ReservationService {
         return reservationRepository.save(reservation).getId();
     }
 
+    public void update(final Long id, final Reservation reservation) {
+        final Reservation existingReservation = reservationRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        reservationRepository.save(reservation);
+    }
 }
