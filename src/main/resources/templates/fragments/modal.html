@@ -1,0 +1,59 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div aria-hidden="true" aria-labelledby="createReservationModalTitle" class="modal fade" id="createReservationModal"
+     role="dialog" tabindex="-1" th:fragment="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createReservationModalTitle">Create Reservation</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form action="#" method="post" th:action="@{/reservations-submit}" th:object="${reservation}">
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label" for="start-date">Amenity</label>
+                        <div class="col-10">
+                            <select class="form-control" id="type-select" th:field="*{amenityType}">
+                                <option value="POOL">POOL</option>
+                                <option value="SAUNA">SAUNA</option>
+                                <option value="GYM">GYM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label" for="start-date">Date</label>
+                        <div class="col-10">
+                            <input class="form-control" id="start-date" max="2021-12-31" min="2021-05-01"
+                                   name="trip-start"
+                                   th:field="*{reservationDate}"
+                                   type="date" value="2018-07-22">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label" for="start-time">From</label>
+                        <div class="col-10">
+                            <input class="form-control" id="start-time" max="19:30" min="08:00" name="time"
+                                   required th:field="*{startTime}" type="time">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label" for="end-time">To</label>
+                        <div class="col-10">
+                            <input class="form-control" id="end-time" max="20:00" min="08:30" name="time"
+                                   required th:field="*{endTime}" type="time">
+                            <small>Amenities are available from 8 am to 8 pm</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                        <button class="btn btn-primary" type="submit" value="Submit">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
