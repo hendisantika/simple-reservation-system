@@ -3,6 +3,7 @@ package com.hendisantika.controller;
 import com.hendisantika.service.ReservationService;
 import com.hendisantika.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,5 +24,10 @@ public class PagesController {
     public PagesController(UserService userService, ReservationService reservationService) {
         this.userService = userService;
         this.reservationService = reservationService;
+    }
+
+    @GetMapping("/")
+    public String index() {
+        return "index";
     }
 }
