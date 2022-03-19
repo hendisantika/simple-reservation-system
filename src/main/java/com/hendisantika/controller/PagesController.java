@@ -9,8 +9,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpSession;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -56,5 +60,18 @@ public class PagesController {
         }
 
         return "index";
+    }
+
+    @PostMapping("/reservations-submit")
+    public String reservationsSubmit(@ModelAttribute Reservation reservation, Model model, @SessionAttribute("user") User user) {
+        // Save to DB after updating
+        assert user != null;
+        reservation.setUser(user);
+        reservationService.create(reservation);
+        Set<Reservation> userReservations = user.getReservations();
+        userReservations.add(reservation);
+        user.setReservations(userReservations);
+        userService.update(user.getId(), user);
+        return "redirect:/reservations";
     }
 }
