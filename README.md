@@ -36,3 +36,29 @@ pandemic. Whole development process and technical decisions has been explained i
 2. Navigate to the folder: `cd simple-reservation-system`
 3. Run the application: `mvn clean spring-boot:run`
 4. Open your favorite browser: http://localhost:8080
+
+### Image Screen shots
+
+Login Page
+
+![Login Page](img/login.png "Login Page")
+
+Home Page
+
+![Home Page](img/home.png "Home Page")
+
+Add Reservation
+
+![Add Reservation](img/add.png "Add Reservation")
+
+![Add Reservation](img/add2.png "Add Reservation")
+
+List Reservation
+
+![List Reservation](img/list1.png "List Reservation")
+
+![List Reservation](img/list2.png "List Reservation")
+
+Logout Page
+
+![Logout Page](img/logout.png "Logout Page")
