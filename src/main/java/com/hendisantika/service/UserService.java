@@ -40,4 +40,8 @@ public class UserService {
     public User getUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
+
+    public Long create(final User user) {
+        return userRepository.save(user).getId();
+    }
 }
