@@ -60,4 +60,8 @@ public class ReservationService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         reservationRepository.save(reservation);
     }
+
+    public void delete(final Long id) {
+        reservationRepository.deleteById(id);
+    }
 }
