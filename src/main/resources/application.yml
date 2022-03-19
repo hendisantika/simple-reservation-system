@@ -24,13 +24,20 @@ spring:
             non_contextual_creation: true
         id:
           new_generator_mappings: true
+
+# swagger-ui custom path
 springdoc:
   pathsToMatch: /api/**
   version: '@springdoc.version@'
   swagger-ui:
-    display-request-duration: true
-    groups-order: DESC
-    operationsSorter: method
-    disable-swagger-default-url: true
-    use-root-path: true
+    #    display-request-duration: true
+    #    groups-order: DESC
+    #    operationsSorter: method
+    #    disable-swagger-default-url: true
+    #    use-root-path: true
+    path: /swagger-ui
+  api-docs:
+    path: /v3/api-docs
   show-actuator: true
+application-description: '@project.description@'
+application-version: '@project.version@'
