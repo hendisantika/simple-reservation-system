@@ -1,7 +1,10 @@
 package com.hendisantika.service;
 
+import com.hendisantika.model.User;
 import com.hendisantika.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,5 +24,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public UserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        final User user = userRepository.findUserByUsername(username);
+
+        if (user == null) {
+            throw new UsernameNotFoundException(username);
+        }
+
+        return org.springframework.security.core.userdetails.User.withUsername(
+                user.getUsername()).password(user.getPasswordHash()).roles("USER").build();
     }
 }
