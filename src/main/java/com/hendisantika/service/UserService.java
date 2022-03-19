@@ -1,7 +1,10 @@
 package com.hendisantika.service;
 
+import com.hendisantika.model.User;
 import com.hendisantika.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,5 +24,9 @@ public class UserService {
 
     public UserService(final UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }
