@@ -1,8 +1,11 @@
 package com.hendisantika.service;
 
+import com.hendisantika.model.Reservation;
 import com.hendisantika.repository.CapacityRepository;
 import com.hendisantika.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,5 +27,9 @@ public class ReservationService {
                               final CapacityRepository capacityRepository) {
         this.reservationRepository = reservationRepository;
         this.capacityRepository = capacityRepository;
+    }
+
+    public List<Reservation> findAll() {
+        return reservationRepository.findAll();
     }
 }
