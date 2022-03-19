@@ -44,4 +44,12 @@ public class UserService {
     public Long create(final User user) {
         return userRepository.save(user).getId();
     }
+
+    public void update(final Long id, final User user) {
+        final User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        existingUser.setUsername(user.getUsername());
+        existingUser.setFullName(user.getFullName());
+        userRepository.save(existingUser);
+    }
 }
