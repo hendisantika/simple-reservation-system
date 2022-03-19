@@ -1,5 +1,6 @@
 package com.hendisantika.service;
 
+import com.hendisantika.exception.CapacityFullException;
 import com.hendisantika.model.Reservation;
 import com.hendisantika.repository.CapacityRepository;
 import com.hendisantika.repository.ReservationRepository;
